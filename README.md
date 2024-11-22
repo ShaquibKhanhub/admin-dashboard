@@ -16,6 +16,9 @@ This project is a User Dashboard built using React. It allows you to manage a li
 - React (version 18.3.1)
 - React Router (for page navigation)
 - Basic knowledge of React hooks (`useState`, `useEffect`)
-- Tailwind CSS (optional for styling)
 
+---
 
+# LIVE APP
+
+https://github.com/ShaquibKhanhub/admin-dashboard.git
