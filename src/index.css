@@ -159,6 +159,10 @@ body {
 .card.selected {
   border: 2px solid #007bff;
 }
+.selected {
+  background-color: #e2e8f0; 
+  border: 2px solid #3182ce; 
+}
 
 .card button {
   margin-right: 10px;

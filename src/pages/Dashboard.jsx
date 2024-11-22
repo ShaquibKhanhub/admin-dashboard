@@ -6,6 +6,7 @@ import { fetchUsers } from "../utils/api";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const [searchId, setSearchId] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,6 +15,7 @@ const Dashboard = () => {
     fetchUsers()
       .then((data) => {
         setUsers(data);
+        setAllUsers(data); 
         setLoading(false);
       })
       .catch((error) => {
@@ -23,12 +25,18 @@ const Dashboard = () => {
   }, []);
 
   const handleDelete = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
+    const updatedUsers = users.filter((user) => user.id !== id);
+    setUsers(updatedUsers);
+    setAllUsers(allUsers.filter((user) => user.id !== id)); 
   };
 
   const handleBulkDelete = () => {
-    setUsers(users.filter((user) => !selectedUsers.includes(user.id)));
-    setSelectedUsers([]);
+    const updatedUsers = users.filter(
+      (user) => !selectedUsers.includes(user.id)
+    );
+    setUsers(updatedUsers);
+    setAllUsers(allUsers.filter((user) => !selectedUsers.includes(user.id))); 
+    setSelectedUsers([]); 
   };
 
   const toggleSelect = (id) => {
@@ -38,7 +46,14 @@ const Dashboard = () => {
   };
 
   const handleSearch = () => {
-    setUsers((prev) => prev.filter((user) => user.id === Number(searchId)));
+    if (searchId) {
+      const filteredUsers = allUsers.filter(
+        (user) => user.id === Number(searchId)
+      );
+      setUsers(filteredUsers);
+    } else {
+      setUsers(allUsers);
+    }
   };
 
   if (loading) {
@@ -67,16 +82,21 @@ const Dashboard = () => {
         selectedUsers={selectedUsers}
         onBulkDelete={handleBulkDelete}
       />
+
       <div className="cards-container">
-        {users.map((user) => (
-          <Card
-            key={user.id}
-            user={user}
-            onDelete={handleDelete}
-            onSelect={toggleSelect}
-            selected={selectedUsers.includes(user.id)}
-          />
-        ))}
+        {users.length === 0 ? (
+          <p>No users found.</p>
+        ) : (
+          users.map((user) => (
+            <Card
+              key={user.id}
+              user={user}
+              onDelete={handleDelete}
+              onSelect={toggleSelect}
+              selected={selectedUsers.includes(user.id)}
+            />
+          ))
+        )}
       </div>
     </div>
   );
