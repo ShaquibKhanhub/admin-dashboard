@@ -21,4 +21,4 @@ This project is a User Dashboard built using React. It allows you to manage a li
 
 # LIVE APP
 
-https://github.com/ShaquibKhanhub/admin-dashboard.git
+https://users-panel.netlify.app/
