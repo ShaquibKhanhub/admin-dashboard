@@ -183,6 +183,16 @@ body {
   margin: auto;
 }
 
+.employee-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .employee-card h2 {
   margin: 0;
 }
@@ -205,4 +215,27 @@ body {
 .loading p {
   font-size: 1.5rem;
   color: #007bff;
+}
+
+
+
+
+.go-back-btn {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #007bff;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.go-back-btn:hover {
+  color: #0056b3;
+}
+
+.go-back-btn span {
+  margin-left: 8px;
 }
